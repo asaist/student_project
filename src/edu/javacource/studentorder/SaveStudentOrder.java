@@ -23,10 +23,11 @@ public class SaveStudentOrder {
 
     public static StudentOrder buildStudentOrder(){
         StudentOrder so = new StudentOrder();
+
         Adult husband = new Adult();
-        husband.setSurName("Andrey");
-        husband.setGivenName("Petrov");
-        husband.setPassportNumber("123456");
+//        husband.setSurName("Andrey");
+//        husband.setGivenName("Petrov");
+//        husband.setPassportNumber("123456");
         so.setHusband(husband);
         String ans = husband.getPersonString();
         System.out.println(ans);
