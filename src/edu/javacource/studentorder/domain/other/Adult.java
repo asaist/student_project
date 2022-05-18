@@ -9,10 +9,14 @@ public class Adult extends Person {
     private String passportNumber;
     private LocalDate issueDate;
     private String issueDepartment;
+
+    public Adult() {
+        System.out.println("Adult has benn created!");
+    }
+
     public String getPersonString(){
         return surName + " " + givenName + ":" + passportNumber;
     }
-
     public String getPassportSeria() {
         return passportSeria;
     }

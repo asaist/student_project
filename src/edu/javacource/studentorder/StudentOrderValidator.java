@@ -24,9 +24,10 @@ public class StudentOrderValidator {
     }
 
     public static void main(String[] args) {
-        checkAll();
+        StudentOrderValidator sov = new StudentOrderValidator();
+        sov.checkAll();
     }
-    void checkAll(){
+    public void checkAll(){
         while (true) {
             StudentOrder so = readStudentOrder();
             System.out.println("Start");
@@ -56,17 +57,18 @@ public class StudentOrderValidator {
     public AnswerCityRegister checkCityRegister(StudentOrder so){
         return cityRegisterVal.checkCityRegister(so);
     }
-    public AnswerWedding checkWedding(StudentOrder so){
-        return WeddingValidator.checkWedding(so);
+    public AnswerWedding checkWedding(StudentOrder so) {
+        return weddingVal.checkWedding(so);
+
     }
     public AnswerChildren checkChildren(StudentOrder so){
-        return ChildrenValidator.checkChildren(so);
+        return childrenVal.checkChildren(so);
     }
     public AnswerStudent checkStudent(StudentOrder so){
-        return StudentValidator.checkStudent(so);
+        return studentVal.checkStudent(so);
     }
     public void sendMail(StudentOrder so)
     {
-        new MailSender().sendMail(so);
+        mailSender.sendMail(so);
     }
 }

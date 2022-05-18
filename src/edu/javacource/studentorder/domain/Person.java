@@ -10,7 +10,7 @@ public class Person {
     private Address address;
 
     public Person(){
-
+        System.out.println("Person has been created!");
     }
 
     public String getPersonString(){
