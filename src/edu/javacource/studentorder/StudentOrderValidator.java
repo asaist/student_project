@@ -29,8 +29,8 @@ public class StudentOrderValidator {
     }
     public void checkAll(){
         while (true) {
-            StudentOrder so = readStudentOrder();
-            System.out.println("Start");
+            StudentOrder [] so = new readStudentOrders();
+
             if (so == null){
                 break;
             }
@@ -49,10 +49,15 @@ public class StudentOrderValidator {
         System.out.println("Finish 2");
     }
 
-    public StudentOrder readStudentOrder(){
-        StudentOrder so = new StudentOrder();
-        SaveStudentOrder.buildStudentOrder();
-        return so;
+    public StudentOrder [] readStudentOrders(){
+
+        StudentOrder [] soArray = new StudentOrder[3];
+
+        for (int i=0;i<soArray.length;i++){
+            soArray[i] = SaveStudentOrder.buildStudentOrder(i);
+        }
+
+        return soArray;
     }
     public AnswerCityRegister checkCityRegister(StudentOrder so){
         return cityRegisterVal.checkCityRegister(so);
