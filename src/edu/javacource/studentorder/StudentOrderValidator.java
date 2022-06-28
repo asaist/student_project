@@ -29,21 +29,21 @@ public class StudentOrderValidator {
     }
     public void checkAll(){
         while (true) {
-            StudentOrder [] so = new readStudentOrders();
+            StudentOrder [] so = readStudentOrders();
 
             if (so == null){
                 break;
             }
             System.out.println("Finish");
-            AnswerCityRegister cityAnswer = checkCityRegister(so);
+            AnswerCityRegister cityAnswer = checkCityRegister(so[0]);
             if (!cityAnswer.isSuccess()){
                 break;
             }
 
-            AnswerWedding answerWedding = checkWedding(so);
-            AnswerChildren answerChildren = checkChildren(so);
-            AnswerStudent answerStudent = checkStudent(so);
-            sendMail(so);
+            AnswerWedding answerWedding = checkWedding(so[0]);
+            AnswerChildren answerChildren = checkChildren(so[0]);
+            AnswerStudent answerStudent = checkStudent(so[0]);
+            sendMail(so[0]);
         }
 
         System.out.println("Finish 2");

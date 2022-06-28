@@ -1,4 +1,4 @@
-package edu.javacource.studentorder.domain.other;
+package edu.javacource.studentorder.domain;
 
 import edu.javacource.studentorder.domain.Person;
 
@@ -11,12 +11,14 @@ public class Adult extends Person {
     private String issueDepartment;
 
     public Adult() {
-        System.out.println("Adult has benn created!");
     }
 
-    public String getPersonString(){
-        return surName + " " + givenName + ":" + passportNumber;
+    public Adult(String surName, String givenName, String patronymic, LocalDate dateofBirth) {
+        super(surName,givenName,patronymic, dateofBirth);
     }
+
+
+
     public String getPassportSeria() {
         return passportSeria;
     }

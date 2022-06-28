@@ -1,15 +1,13 @@
 package edu.javacource.studentorder;
 
-import edu.javacource.studentorder.domain.Person;
-import edu.javacource.studentorder.domain.other.Adult;
-import edu.javacource.studentorder.domain.Child;
+import edu.javacource.studentorder.domain.Adult;
 import edu.javacource.studentorder.domain.StudentOrder;
 
 public class SaveStudentOrder {
     public static void main(String[] args) {
 
 
-        buildStudentOrder();
+        buildStudentOrder(5);
 //        StudentOrder so1 = new StudentOrder();
 //        long ans1 = saveStudentOrder(so1);
 //        System.out.println(ans1);
@@ -25,9 +23,16 @@ public class SaveStudentOrder {
     public static StudentOrder buildStudentOrder(long id){
         StudentOrder so = new StudentOrder();
         so.setId(id);
+        StudentOrder so1 = so;
+        printStudentOrder(so1);
+        Adult husband = new Adult("Васильев","Андрей","Петрович", null);
 
 
         return so;
+    }
+
+    static void printStudentOrder(StudentOrder so){
+        System.out.println(so.getId());
     }
 
 

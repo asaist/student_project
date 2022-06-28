@@ -3,18 +3,20 @@ package edu.javacource.studentorder.domain;
 import java.time.LocalDate;
 
 public abstract class Person {
-    protected String surName;
-    protected String givenName;
+    private String surName;
+    private String givenName;
     private String patronymic;
     private LocalDate dateOfBirth;
     private Address address;
 
-    public Person(){
-        System.out.println("Person has been created!");
+    public Person() {
     }
 
-    public String getPersonString(){
-        return surName + " " + givenName;
+    public Person(String surName, String givenName, String patronymic, LocalDate dateOfBirth) {
+        this.surName = surName;
+        this.givenName = givenName;
+        this.patronymic = patronymic;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getSurName() {
