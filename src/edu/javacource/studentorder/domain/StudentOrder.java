@@ -1,17 +1,25 @@
 package edu.javacource.studentorder.domain;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 public class StudentOrder {
-    private long id;
+    private long studentOrderId;
     private Adult husband;
     private Adult wife;
     private Child child;
 
-    public long getId() {
-        return id;
+    private String marriageCertificateId;
+    private LocalDate marriageDate;
+    private String marriageOffice;
+    private Address address;
+
+    public long getStudentOrderId() {
+        return studentOrderId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setStudentOrderId(long studentOrderId) {
+        this.studentOrderId = studentOrderId;
     }
 
     public Adult getHusband() {
@@ -36,5 +44,37 @@ public class StudentOrder {
 
     public void setChild(Child child) {
         this.child = child;
+    }
+
+    public String getMarriageCertificateId() {
+        return marriageCertificateId;
+    }
+
+    public LocalDate getMarriageDate() {
+        return marriageDate;
+    }
+
+    public String getMarriageOffice() {
+        return marriageOffice;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setMarriageCertificateId(String marriageCertificateId) {
+        this.marriageCertificateId = marriageCertificateId;
+    }
+
+    public void setMarriageDate(LocalDate marriageDate) {
+        this.marriageDate = marriageDate;
+    }
+
+    public void setMarriageOffice(String marriageOffice) {
+        this.marriageOffice = marriageOffice;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
