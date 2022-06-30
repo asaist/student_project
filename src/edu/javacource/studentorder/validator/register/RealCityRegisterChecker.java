@@ -1,11 +1,11 @@
-package edu.javacource.studentorder.validator;
+package edu.javacource.studentorder.validator.register;
 
-import edu.javacource.studentorder.domain.CityRegisterCheckerResponse;
+import edu.javacource.studentorder.domain.register.CityRegisterResponse;
 import edu.javacource.studentorder.domain.Person;
 import edu.javacource.studentorder.exception.CityRegisterException;
 
 public class RealCityRegisterChecker implements CityRegisterChecker {
-    public CityRegisterCheckerResponse checkPerson(Person person) throws CityRegisterException {
+    public CityRegisterResponse checkPerson(Person person) throws CityRegisterException {
         return null;
     }
 }

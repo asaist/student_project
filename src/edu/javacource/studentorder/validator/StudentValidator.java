@@ -1,6 +1,6 @@
 package edu.javacource.studentorder.validator;
 
-import edu.javacource.studentorder.domain.AnswerStudent;
+import edu.javacource.studentorder.domain.student.AnswerStudent;
 import edu.javacource.studentorder.domain.StudentOrder;
 
 public class StudentValidator {

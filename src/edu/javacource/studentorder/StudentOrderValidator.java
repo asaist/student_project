@@ -1,11 +1,18 @@
 package edu.javacource.studentorder;
 
 import edu.javacource.studentorder.domain.*;
+import edu.javacource.studentorder.domain.children.AnswerChildren;
+import edu.javacource.studentorder.domain.register.AnswerCityRegister;
+import edu.javacource.studentorder.domain.student.AnswerStudent;
+import edu.javacource.studentorder.domain.wedding.AnswerWedding;
 import edu.javacource.studentorder.mail.MailSender;
 import edu.javacource.studentorder.validator.ChildrenValidator;
 import edu.javacource.studentorder.validator.CityRegisterValidator;
 import edu.javacource.studentorder.validator.StudentValidator;
 import edu.javacource.studentorder.validator.WeddingValidator;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class StudentOrderValidator {
 
@@ -28,22 +35,23 @@ public class StudentOrderValidator {
         sov.checkAll();
     }
     public void checkAll(){
-            StudentOrder [] soArray = readStudentOrders();
+            List<StudentOrder> soList = new LinkedList<>();
 
-           for (StudentOrder so :soArray) {
+           for (StudentOrder so :soList) {
                checkOneOrder(so);
            }
     }
 
-    public StudentOrder [] readStudentOrders(){
+    public List<StudentOrder> readStudentOrders(){
 
-        StudentOrder [] soArray = new StudentOrder[1];
+        List<StudentOrder> soList = new LinkedList<>();
 
-        for (int i=0;i<soArray.length;i++){
-            soArray[i] = SaveStudentOrder.buildStudentOrder(i);
+        for (int i=0;i<soList.size();i++){
+           StudentOrder so = SaveStudentOrder.buildStudentOrder(i);
+           soList.add(so);
         }
 
-        return soArray;
+        return soList;
     }
 
     public void checkOneOrder(StudentOrder so){

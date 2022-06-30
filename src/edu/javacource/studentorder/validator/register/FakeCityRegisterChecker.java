@@ -1,7 +1,8 @@
-package edu.javacource.studentorder.validator;
+package edu.javacource.studentorder.validator.register;
 
 import edu.javacource.studentorder.domain.Adult;
-import edu.javacource.studentorder.domain.CityRegisterCheckerResponse;
+import edu.javacource.studentorder.domain.Child;
+import edu.javacource.studentorder.domain.register.CityRegisterResponse;
 import edu.javacource.studentorder.domain.Person;
 import edu.javacource.studentorder.exception.CityRegisterException;
 
@@ -13,9 +14,9 @@ public class FakeCityRegisterChecker implements CityRegisterChecker {
     private static final String ERROR_1 = "1002";
     private static final String ERROR_2 = "2002";
 
-    public CityRegisterCheckerResponse checkPerson(Person person) throws CityRegisterException {
+    public CityRegisterResponse checkPerson(Person person) throws CityRegisterException {
 
-        CityRegisterCheckerResponse res = new CityRegisterCheckerResponse();
+        CityRegisterResponse res = new CityRegisterResponse();
         if(person instanceof Adult){
             Adult t = (Adult)person;
             String ps = t.getPassportSeria();
@@ -27,10 +28,17 @@ public class FakeCityRegisterChecker implements CityRegisterChecker {
                 res.setExisting(false);
             }
             if (ps.equals(ERROR_1)||ps.equals(ERROR_2)){
-                CityRegisterException ex = new CityRegisterException("FAKE ERROR");
+                CityRegisterException ex = new CityRegisterException("FAKE ERROR" + ps);
                 throw ex;
             }
         }
-        return null;
+        if (person instanceof Child){
+            res.setExisting(true);
+            res.setTemporal(true);
+        }
+
+        System.out.println(res);
+
+        return res;
     }
 }
