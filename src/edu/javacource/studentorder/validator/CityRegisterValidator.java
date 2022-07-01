@@ -61,6 +61,6 @@ public class CityRegisterValidator {
         AnswerCityRegisterItem ans =
                 new AnswerCityRegisterItem(status,person,error);
 
-        return null;
+        return ans;
     }
 }

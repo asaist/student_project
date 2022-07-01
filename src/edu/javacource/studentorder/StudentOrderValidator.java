@@ -35,7 +35,7 @@ public class StudentOrderValidator {
         sov.checkAll();
     }
     public void checkAll(){
-            List<StudentOrder> soList = new LinkedList<>();
+            List<StudentOrder> soList = readStudentOrders();
 
            for (StudentOrder so :soList) {
                checkOneOrder(so);
@@ -46,7 +46,7 @@ public class StudentOrderValidator {
 
         List<StudentOrder> soList = new LinkedList<>();
 
-        for (int i=0;i<soList.size();i++){
+        for (int i=0;i<5;i++){
            StudentOrder so = SaveStudentOrder.buildStudentOrder(i);
            soList.add(so);
         }

@@ -9,5 +9,10 @@ public class AnswerCityRegister {
         if (items == null){
             items = new ArrayList<>(10);
         }
+        items.add(item);
+    }
+
+    public List<AnswerCityRegisterItem> getItems() {
+        return items;
     }
 }
