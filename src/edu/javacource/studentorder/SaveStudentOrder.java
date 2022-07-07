@@ -1,18 +1,22 @@
 package edu.javacource.studentorder;
 
+import edu.javacource.studentorder.dao.DictionaryDaoImpl;
 import edu.javacource.studentorder.domain.*;
+import edu.javacource.studentorder.exception.DaoException;
 
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 public class SaveStudentOrder {
-    public static void main(String[] args) throws ExceptionInInitializerError, ClassNotFoundException, SQLException {
+    public static void main(String[] args) throws ExceptionInInitializerError, ClassNotFoundException, SQLException, DaoException {
 
+    List<Street> d = new DictionaryDaoImpl().findStreets("d");
+    for (Street s : d){
+        System.out.println(s.getStreetName());
+    }
 
-
-
-            buildStudentOrder(5);
+//            buildStudentOrder(5);
 
 //        StudentOrder so1 = new StudentOrder();
 //        long ans1 = saveStudentOrder(so1);
