@@ -1,9 +1,6 @@
 package edu.javacource.studentorder;
 
-import edu.javacource.studentorder.domain.Address;
-import edu.javacource.studentorder.domain.Adult;
-import edu.javacource.studentorder.domain.Child;
-import edu.javacource.studentorder.domain.StudentOrder;
+import edu.javacource.studentorder.domain.*;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -12,10 +9,7 @@ import java.time.LocalDate;
 public class SaveStudentOrder {
     public static void main(String[] args) throws ExceptionInInitializerError, ClassNotFoundException, SQLException {
 
-        Class.forName("org.postgresql.Driver");
-        DriverManager.getConnection(
-                "jdbc:postgresql:\\localhost:5432/jc_student",
-                "postgres","postgres");
+
 
 
             buildStudentOrder(5);
@@ -39,7 +33,9 @@ public class SaveStudentOrder {
         so.setMarriageDate(LocalDate.of(2016,7,4));
         so.setMarriageOffice("Отдел ЗАГС");
 
-        Address address = new Address("195000", "Заневский пр.", "12", "", "142");
+        Street street = new Street(1L,"First street");
+
+        Address address = new Address("195000", street, "12", "", "142");
 
         //Муж
         Adult husband = new Adult("Петров","Виктор","Сергеевич", LocalDate.of(1997,8,24));
