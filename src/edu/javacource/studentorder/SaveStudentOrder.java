@@ -5,18 +5,21 @@ import edu.javacource.studentorder.domain.Adult;
 import edu.javacource.studentorder.domain.Child;
 import edu.javacource.studentorder.domain.StudentOrder;
 
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 
 public class SaveStudentOrder {
     public static void main(String[] args) throws ExceptionInInitializerError, ClassNotFoundException, SQLException {
 
-        Class.forName("org.postgresql.Driver");
-        DriverManager.getConnection(
-                "jdbc:postgresql:\\localhost:5432/jc_student",
-                "postgres","postgres");
 
+        Connection con =DriverManager.getConnection(
+                "jdbc:postgresql://localhost:5432/jc_student",
+                "postgres","postgres");
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM jc_street");
+        while(rs.next()){
+            System.out.println(rs.getLong(1) + ":" + rs.getString(2));
+        }
 
             buildStudentOrder(5);
 
