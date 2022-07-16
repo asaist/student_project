@@ -1,6 +1,7 @@
 package edu.javacource.studentorder.dao;
 
 import edu.javacource.studentorder.config.Config;
+import edu.javacource.studentorder.domain.CountryArea;
 import edu.javacource.studentorder.domain.PassportOffice;
 import edu.javacource.studentorder.domain.RegisterOffice;
 import edu.javacource.studentorder.domain.Street;
@@ -12,8 +13,10 @@ import java.util.List;
 
 public class DictionaryDaoImpl  implements DictionaryDao{
     private static final String GET_STREET = "SELECT street_code, street_name FROM jc_street WHERE UPPER(street_name) LIKE UPPER(?)";
-    private static final String GET_PASSPORT = "SELECT * FROM jc_passport_office p_area_id = ?";
-    private static final String GET_REGISTER = "SELECT * FROM jc_register_office r_area_id = ?";
+    private static final String GET_PASSPORT = "SELECT * FROM jc_passport_office WHERE p_office_area_id = ?";
+    private static final String GET_REGISTER = "SELECT * FROM jc_register_office WHERE r_office_area_id = ?";
+    private static final String GET_AREA = "SELECT * FROM jc_country_struct WHERE area_id like ? and area_id <> ?";
+    //TODO refactoring - male one method
     private Connection getConnection() throws SQLException {
         Connection con = DriverManager.getConnection(
                 Config.getProperty(Config.DB_URL),
@@ -69,12 +72,53 @@ public class DictionaryDaoImpl  implements DictionaryDao{
             stmt.setString(1,areaId);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                RegisterOffice str = new RegisterOffice(rs.getLong("r_office_id"), rs.getString("r_office_area_id"),rs.getString("r_office_name") );
+                RegisterOffice str = new RegisterOffice(rs.getLong("r_office_id"),
+                                                        rs.getString("r_office_area_id"),
+                                                        rs.getString("r_office_name") );
                 result.add(str);
             }
         }catch (SQLException ex){
             throw  new DaoException(ex);
         }
         return result;
+    }
+
+    @Override
+    public List<CountryArea> findAreas(String areaId) throws DaoException {
+        List<CountryArea> result = new LinkedList<>();
+
+        try(Connection con = getConnection()){
+
+            PreparedStatement stmt = con.prepareStatement(GET_AREA);
+
+            String param1 = buildParam(areaId);
+            String param2 = areaId;
+
+            stmt.setString(1,param1);
+            stmt.setString(2,param2);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                CountryArea str = new CountryArea(rs.getString("area_id"),
+                        rs.getString("area_name") );
+                result.add(str);
+            }
+        }catch (SQLException ex){
+            throw  new DaoException(ex);
+        }
+        return result;
+    }
+
+    private String buildParam(String areaId) throws SQLException {
+        if (areaId==null || areaId.trim().isEmpty()){
+            return "__0000000000";
+        }else if(areaId.endsWith("0000000000")){
+           return areaId.substring(0,2) + "___0000000";
+        }else if(areaId.endsWith("0000000")){
+            return areaId.substring(0,5) + "___0000";
+        } else if (areaId.endsWith("0000")) {
+            return areaId.substring(0,8) + "____";
+        }
+        throw new SQLException("Invalid parametr 'areaId':" + areaId);
     }
 }
