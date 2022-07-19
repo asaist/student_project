@@ -1,12 +1,15 @@
 package edu.javacource.studentorder.domain;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class StudentOrder {
     private long studentOrderId;
+    private StudentOrderStatus studentOrderStatus;
+    private LocalDateTime studentOrderDate;
     private Adult husband;
     private Adult wife;
     private List<Child> children;
@@ -21,6 +24,22 @@ public class StudentOrder {
 
     public void setStudentOrderId(long studentOrderId) {
         this.studentOrderId = studentOrderId;
+    }
+
+    public StudentOrderStatus getStudentOrderStatus() {
+        return studentOrderStatus;
+    }
+
+    public void setStudentOrderStatus(StudentOrderStatus studentOrderStatus) {
+        this.studentOrderStatus = studentOrderStatus;
+    }
+
+    public LocalDateTime getStudentOrderDate() {
+        return studentOrderDate;
+    }
+
+    public void setStudentOrderDate(LocalDateTime studentOrderDate) {
+        this.studentOrderDate = studentOrderDate;
     }
 
     public Adult getHusband() {

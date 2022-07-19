@@ -16,7 +16,7 @@ public class DictionaryDaoImpl  implements DictionaryDao{
     private static final String GET_PASSPORT = "SELECT * FROM jc_passport_office WHERE p_office_area_id = ?";
     private static final String GET_REGISTER = "SELECT * FROM jc_register_office WHERE r_office_area_id = ?";
     private static final String GET_AREA = "SELECT * FROM jc_country_struct WHERE area_id like ? and area_id <> ?";
-    //TODO refactoring - male one method
+    //TODO refactoring - make one method
     private Connection getConnection() throws SQLException {
         Connection con = DriverManager.getConnection(
                 Config.getProperty(Config.DB_URL),
