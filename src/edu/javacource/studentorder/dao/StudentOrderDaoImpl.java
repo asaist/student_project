@@ -24,7 +24,7 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
     private static final String INSERT_CHILD =
             "INSERT INTO jc_student_child(" +
                     " student_order_id, c_sur_name, c_given_name," +
-                    " c_patronymic, с_date_of_birth, c_certificate_number, c_issue_date," +
+                    " c_patronymic, c_date_of_birth, c_certificate_number, c_certificate_date," +
                     " c_register_office_id, c_post_index, c_street_code, c_building," +
                     " c_extension, c_apartment)" +
                     "VALUES (?, ?, ?, " +
