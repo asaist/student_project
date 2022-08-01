@@ -46,7 +46,7 @@ public class SaveStudentOrder {
         husband.setPassportSeria("" + (1000 + id));
         husband.setPassportNumber("" + (100000 + id));
         husband.setIssueDate(LocalDate.of(2017,9,15));
-        husband.setIssueDepartment("Отдел милиции №" + id);
+        husband.setIssueDepartment();
         husband.setStudentId("" + (100000 + id));
         husband.setAddress(address);
 
