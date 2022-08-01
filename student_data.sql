@@ -5,6 +5,9 @@ INSERT INTO jc_street (street_code, street_name) VALUES
 (4, 'улица Гороховая'),
 (5, 'проспект Ветеранов');
 
+INSERT INTO TABLE jc_university(university_id, university_name) VALUES
+(1,'Санкт-Петербургский Государственный Университет'),
+
 
 INSERT INTO jc_country_struct (area_id, area_name) VALUES
 ('010000000000', 'Город'),
