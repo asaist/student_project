@@ -9,7 +9,6 @@ public class Adult extends Person {
     private PassportOffice issueDepartment;
     private String studentId;
 
-
     public Adult() {
     }
 

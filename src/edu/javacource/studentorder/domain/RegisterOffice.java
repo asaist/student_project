@@ -1,6 +1,7 @@
 package edu.javacource.studentorder.domain;
 
 public class RegisterOffice {
+
     private Long officeId;
     private String officeAreaId;
     private String officeName;
