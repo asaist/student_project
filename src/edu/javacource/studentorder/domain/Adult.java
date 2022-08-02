@@ -1,7 +1,5 @@
 package edu.javacource.studentorder.domain;
 
-import edu.javacource.studentorder.domain.Person;
-
 import java.time.LocalDate;
 
 public class Adult extends Person {
@@ -11,6 +9,7 @@ public class Adult extends Person {
     private PassportOffice issueDepartment;
     private University university;
     private String studentId;
+    private University university;
 
     public Adult() {
     }
@@ -67,5 +66,13 @@ public class Adult extends Person {
 
     public void setStudentId(String studentId) {
         this.studentId = studentId;
+    }
+
+    public University getUniversity() {
+        return university;
+    }
+
+    public void setUniversity(University university) {
+        this.university = university;
     }
 }

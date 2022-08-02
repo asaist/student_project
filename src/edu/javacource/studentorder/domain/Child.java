@@ -2,7 +2,7 @@ package edu.javacource.studentorder.domain;
 
 import java.time.LocalDate;
 
-public class Child extends Person{
+public class Child extends Person {
     private String certificateNumber;
     private LocalDate issueDate;
     private RegisterOffice issueDepartment;
@@ -36,3 +36,4 @@ public class Child extends Person{
         this.issueDepartment = issueDepartment;
     }
 }
+
