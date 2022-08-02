@@ -23,7 +23,7 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
                     "        ?, ?, ?, ?, ?, ?," +
                     "        ?, ?, ?, ?, ?," +
                     "        ?, ?, ?, ?," +
-                    "        ?, ?, ?, ?, ?, ?" +
+                    "        ?, ?, ?, ?, ?, ?, " +
                     "        ?, ?, ?); ";
     private static final String INSERT_CHILD =
             "INSERT INTO jc_student_child(" +
