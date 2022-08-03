@@ -10,6 +10,7 @@ public class Adult extends Person {
     private University university;
     private String studentId;
 
+
     public Adult() {
     }
 
@@ -66,4 +67,6 @@ public class Adult extends Person {
     public void setStudentId(String studentId) {
         this.studentId = studentId;
     }
+
+
 }
