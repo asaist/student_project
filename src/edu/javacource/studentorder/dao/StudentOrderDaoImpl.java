@@ -103,6 +103,10 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
                 StudentOrder so = new StudentOrder();
                 fillStudentOrder(rs,so);
                 fillMarriage(rs,so);
+                Adult husband = fillAdult(rs,"h_");
+                Adult wife = fillAdult(rs,"w_");
+                so.setHusband(husband);
+                so.setWife(wife);
                 result.add(so);
             }
 
@@ -114,6 +118,33 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
         return result;
     }
 
+    private Adult fillAdult(ResultSet rs, String prefix) throws SQLException {
+        Adult adult = new Adult();
+        adult.setSurName(rs.getString(prefix + "sur_name"));
+        adult.setGivenName(rs.getString(prefix + "given_name"));
+        adult.setPatronymic(rs.getString(prefix + "patronymic"));
+        adult.setDateOfBirth(rs.getDate(prefix + "date_of_birth").toLocalDate());
+        adult.setPassportSeria(rs.getString(prefix + "passport_seria"));
+        adult.setPassportNumber(rs.getString(prefix + "passport_number"));
+        adult.setIssueDate(rs.getDate(prefix + "passport_date").toLocalDate());
+        PassportOffice po = new PassportOffice(rs.getLong(prefix + "passport_office_id"),"","");
+        adult.setIssueDepartment(po);
+        Address address = new Address();
+        address.setPostCode(rs.getString(prefix + "post_index"));
+        address.setBuilding(rs.getString(prefix + "building"));
+        address.setExtension(rs.getString(prefix + "extension"));
+        address.setApartment(rs.getString(prefix + "apartment"));
+
+        Street st = new Street(rs.getLong(prefix + "street_code"),"");
+        address.setStreet(st);
+        adult.setAddress(address);
+        University university = new University(rs.getLong(prefix + "university_id"),"");
+        adult.setUniversity(university);
+        adult.setStudentId(rs.getString(prefix + "student_number"));
+
+        return adult;
+
+    }
 
 
     private void fillStudentOrder(ResultSet rs, StudentOrder so) throws SQLException {
