@@ -38,8 +38,13 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
                     "?, ?, ?, ?," +
                     " ?, ?); ";
     private static final String SELECT_ORDERS =
-            "select so.*, ro.r_office_area_id, ro.r_office_name from jc_student_order so"+
-                    " inner join jc_register_office ro on ro.r_office_id = so.register_office_id"+
+            "select so.*, ro.r_office_area_id, ro.r_office_name," +
+                    " po_h.p_office_area_id as h_p_office_area_id, po_h.p_office_name as h_p_office_name," +
+                    " po_w.p_office_area_id as w_p_office_area_id, po_w.p_office_name as w_p_office_name" +
+                    " from jc_student_order as so"+
+                    " inner join jc_register_office ro on ro.r_office_id = so.register_office_id" +
+                    " inner join jc_passport_office po_h on po_h.p_office_id = so.h_passport_office_id"+
+                    " inner join jc_passport_office po_w on po_w.p_office_id = so.w_passport_office_id"+
                     " where student_order_status = 0"+
                     " order by student_order_date";
 
@@ -171,7 +176,10 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
         adult.setPassportSeria(rs.getString(prefix + "passport_seria"));
         adult.setPassportNumber(rs.getString(prefix + "passport_number"));
         adult.setIssueDate(rs.getDate(prefix + "passport_date").toLocalDate());
-        PassportOffice po = new PassportOffice(rs.getLong(prefix + "passport_office_id"),"","");
+        Long poId = rs.getLong(prefix + "passport_office_id");
+        String poArea = rs.getString(prefix + "p_office_area_id" );
+        String poName = rs.getString(prefix + "p_office_name");
+        PassportOffice po = new PassportOffice(poId,poArea,poName);
         adult.setIssueDepartment(po);
         Address address = new Address();
         address.setPostCode(rs.getString(prefix + "post_index"));
