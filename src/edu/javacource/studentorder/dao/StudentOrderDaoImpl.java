@@ -8,6 +8,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class StudentOrderDaoImpl implements StudentOrderDao {
 
@@ -47,6 +48,11 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
                     " inner join jc_passport_office po_w on po_w.p_office_id = so.w_passport_office_id"+
                     " where student_order_status = ?"+
                     " order by student_order_date";
+    private static final String SELECT_CHILD =
+            "select soc.*,jro.r_office_area_id,jro.r_office_name " +
+                    "from jc_student_child soc" +
+                    "inner join jc_register_office jro on jro.r_office_id = soc.c_register_office_id" +
+                    "where student_order_id in ()";
 
 
     //TODO refactoring - make one method
@@ -149,6 +155,7 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
              PreparedStatement stmt = con.prepareStatement(SELECT_ORDERS)){
             stmt.setInt(1,StudentOrderStatus.START.ordinal());
             ResultSet rs = stmt.executeQuery();
+
             while (rs.next()){
                 StudentOrder so = new StudentOrder();
                 fillStudentOrder(rs,so);
@@ -160,12 +167,19 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
                 result.add(so);
             }
 
+            findChildren(con,result);
+
             rs.close();
         }catch (SQLException ex){
             throw new DaoException(ex);
         }
 
         return result;
+    }
+
+    private void findChildren(Connection con, List<StudentOrder> result) {
+        String cl = "(" + result.stream().map(so -> String.valueOf(so.getStudentOrderId()))
+        .collect(Collectors.joining(",")) + ")";
     }
 
     private Adult fillAdult(ResultSet rs, String prefix) throws SQLException {
