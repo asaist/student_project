@@ -288,8 +288,6 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
                 StudentOrder so = maps.get(rs.getLong("student_order_id"));
                 so.addChild(ch);
             }
-
-
         }
     }
     private Child fillChild(ResultSet rs) throws SQLException {
